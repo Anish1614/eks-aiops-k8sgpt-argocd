@@ -4,10 +4,10 @@ metadata:
   name: k8sgpt-bedrock
   namespace: k8sgpt-operator-system
 spec:
-  version: v0.4.11
+  version: v0.4.30
   ai:
     enabled: true
-    model: amazon.nova-lite-v1:0
+    model: us.amazon.nova-lite-v1:0
     backend: amazonbedrock
     region: us-east-1
   noCache: false
