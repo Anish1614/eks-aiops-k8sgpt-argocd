@@ -11,7 +11,7 @@ resource "aws_iam_role" "k8sgpt_bedrock" {
       Action = "sts:AssumeRoleWithWebIdentity"
       Condition = {
         StringLike = {
-          "${module.eks.oidc_provider}:sub" = "system:serviceaccount:k8sgpt-operator-system:k8sgpt-operator*"
+          "${module.eks.oidc_provider}:sub" = "system:serviceaccount:k8sgpt-operator-system:*"
         }
       }
     }]
@@ -25,7 +25,7 @@ resource "aws_iam_role_policy" "k8sgpt_bedrock" {
     Statement = [{
       Effect   = "Allow"
       Action   = ["bedrock:InvokeModel"]
-      Resource = "arn:aws:bedrock:${var.region}::foundation-model/anthropic.claude-3-5-haiku-20241022-v1:0"
+      Resource = "arn:aws:bedrock:${var.region}::foundation-model/*"
     }]
   })
 }
