@@ -37,3 +37,26 @@ output "allowed_public_ip" {
   description = "The public IP address currently allowed to access the EKS cluster endpoint"
   value       = chomp(data.http.myip.response_body)
 }
+
+output "oidc_provider_arn" {
+  description = "The ARN of the OIDC Provider"
+  value       = module.eks.oidc_provider_arn
+}
+
+output "oidc_provider_url" {
+  description = "The URL on the EKS cluster for the OpenID Connect identity provider"
+  value       = module.eks.cluster_oidc_issuer_url
+}
+
+output "k8sgpt_iam_role_arn" {
+  description = "IAM Role ARN for K8sGPT"
+  value       = aws_iam_role.k8sgpt_bedrock.arn
+}
+
+output "node_group_iam_role_arn" {
+  description = "IAM Role ARN for EKS Node Group"
+  value       = module.eks.eks_managed_node_groups["default"].iam_role_arn
+}
+output "argocd_iam_role_arn" {
+  value = aws_iam_role.argocd_irsa.arn
+}

@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "cluster_name" {
-  default = "monitoring-platform"
+  default = "eks-aiops-cluster"
 }
 
 data "http" "myip" {
