@@ -16,5 +16,5 @@ spec:
     - Deployment
     - Service
     - ReplicaSet
-  deployment:
-    serviceAccountName: k8sgpt-bedrock  # Critical: Uses IRSA SA
+  extraOptions:
+    serviceAccountIRSA: arn:aws:iam::660235343049:role/eks-aiops-cluster-k8sgpt-bedrock-role
