@@ -4,10 +4,10 @@ metadata:
   name: k8sgpt-bedrock
   namespace: k8sgpt-operator-system
 spec:
-  version: v0.4.1  # Fixed: v0.4.30 doesn't exist
+  version: v0.4.11
   ai:
     enabled: true
-    model: amazon.nova-lite-v1:0  # Fixed: Claude 3.5 Haiku is deprecated
+    model: amazon.nova-lite-v1:0
     backend: amazonbedrock
     region: us-east-1
   noCache: false

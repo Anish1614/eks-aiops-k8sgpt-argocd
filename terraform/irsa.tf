@@ -10,8 +10,8 @@ resource "aws_iam_role" "k8sgpt_bedrock" {
       }
       Action = "sts:AssumeRoleWithWebIdentity"
       Condition = {
-        StringEquals = {
-          "${module.eks.oidc_provider}:sub" = "system:serviceaccount:k8sgpt-operator-system:k8sgpt-bedrock"
+        StringLike = {
+          "${module.eks.oidc_provider}:sub" = "system:serviceaccount:k8sgpt-operator-system:*"
           "${module.eks.oidc_provider}:aud" = "sts.amazonaws.com"
         }
       }
