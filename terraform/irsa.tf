@@ -29,9 +29,10 @@ resource "aws_iam_role_policy" "k8sgpt_bedrock" {
         "bedrock:InvokeModel",
         "bedrock:InvokeModelWithResponseStream",
         "bedrock:ListFoundationModels",
-        "bedrock:GetFoundationModel"
+        "bedrock:GetFoundationModel",
+        "bedrock:GetInferenceProfile"
       ]
-      Resource = "arn:aws:bedrock:${var.region}::foundation-model/*"
+      Resource = "*"
     }]
   })
 }
