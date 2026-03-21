@@ -10,8 +10,9 @@ resource "aws_iam_role" "k8sgpt_bedrock" {
       }
       Action = "sts:AssumeRoleWithWebIdentity"
       Condition = {
-        StringLike = {
-          "${module.eks.oidc_provider}:sub" = "system:serviceaccount:k8sgpt-operator-system:*"
+        StringEquals = {
+          "${module.eks.oidc_provider}:sub" = "system:serviceaccount:k8sgpt-operator-system:k8sgpt-bedrock"
+          "${module.eks.oidc_provider}:aud" = "sts.amazonaws.com"
         }
       }
     }]
@@ -24,7 +25,12 @@ resource "aws_iam_role_policy" "k8sgpt_bedrock" {
     Version = "2012-10-17"
     Statement = [{
       Effect   = "Allow"
-      Action   = ["bedrock:InvokeModel"]
+      Action   = [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream",
+        "bedrock:ListFoundationModels",
+        "bedrock:GetFoundationModel"
+      ]
       Resource = "arn:aws:bedrock:${var.region}::foundation-model/*"
     }]
   })
@@ -50,3 +56,12 @@ resource "aws_iam_role" "argocd_irsa" {
 }
 
 
+resource "kubernetes_service_account_v1" "k8sgpt_bedrock" {
+  metadata {
+    name      = "k8sgpt-bedrock"
+    namespace = "k8sgpt-operator-system"
+    annotations = {
+      "eks.amazonaws.com/role-arn" = aws_iam_role.k8sgpt_bedrock.arn
+    }
+  }
+}
