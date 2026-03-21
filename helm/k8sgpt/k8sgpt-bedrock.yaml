@@ -4,12 +4,13 @@ metadata:
   name: k8sgpt-bedrock
   namespace: k8sgpt-operator-system
 spec:
-  version: v0.4.24
+  version: v0.4.13
   ai:
     enabled: true
-    model: amazon.nova-lite-v1:0
+    model: us.anthropic.claude-3-5-haiku-20241022-v1:0
     backend: amazonbedrock
     region: us-east-1
+    anonymized: false
   noCache: false
   filters:
     - Pod
