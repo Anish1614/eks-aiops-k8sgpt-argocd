@@ -1,0 +1,112 @@
+kubectl logs -n k8sgpt-operator-system deployment/k8sgpt-operator-controller-manager -c manager -f --tail=50
+2026-03-21T23:42:28Z    INFO    k8sgpt-controller       K8sGPT address: 172.20.136.103:8080
+2026-03-21T23:42:28Z    INFO    k8sgpt-controller       K8sGPT client: &{0xc0006e0008}
+2026-03-21T23:42:28Z    INFO    k8sgpt-controller       Sending signal to configure step
+2026-03-21T23:42:28Z    INFO    k8sgpt-controller       Signal sent to configure step
+2026-03-21T23:42:28Z    INFO    k8sgpt-controller       Adding remote cache
+2026-03-21T23:42:28Z    INFO    k8sgpt-controller       Remote cache added
+2026-03-21T23:42:28Z    INFO    k8sgpt-controller       Adding integrations
+2026-03-21T23:42:28Z    INFO    k8sgpt-controller       Integrations added
+2026-03-21T23:42:28Z    INFO    k8sgpt-controller       ending PreAnalysisStep
+2026-03-21T23:42:28Z    INFO    k8sgpt-controller       starting AnalysisStep
+2026-03-21T23:42:28Z    INFO    k8sgpt-controller       Finished Reconciling k8sGPT with error: %s
+        {"error": "failed to call Analyze RPC: rpc error: code = Unknown desc = failed while calling AI provider amazonbedrock: model 'arn:aws:bedrock:us-east-1:660235343049:inference-profile/us.amazon.nova-lite-v1:0' is not supported.\nSupported models:\n  - anthropic.claude-sonnet-4-20250514-v1:0\n  - us.anthropic.claude-sonnet-4-20250514-v1:0\n  - eu.anthropic.claude-sonnet-4-20250514-v1:0\n  - apac.anthropic.claude-sonnet-4-20250514-v1:0\n  - us.anthropic.claude-3-7-sonnet-20250219-v1:0\n  - eu.anthropic.claude-3-7-sonnet-20250219-v1:0\n  - apac.anthropic.claude-3-7-sonnet-20250219-v1:0\n  - anthropic.claude-3-5-sonnet-20240620-v1:0\n  - us.anthropic.claude-3-5-sonnet-20241022-v2:0\n  - anthropic.claude-v2\n  - anthropic.claude-v1\n  - anthropic.claude-instant-v1\n  - ai21.j2-ultra-v1\n  - ai21.j2-jumbo-instruct\n  - amazon.titan-text-express-v1\n  - amazon.nova-pro-v1:0\n  - eu.amazon.nova-pro-v1:0\n  - us.amazon.nova-pro-v1:0\n  - amazon.nova-lite-v1:0\n  - eu.amazon.nova-lite-v1:0\n  - us.amazon.nova-lite-v1:0\n  - anthropic.claude-3-haiku-20240307-v1:0\n"}
+2026-03-21T23:42:28Z    INFO    Warning: Reconciler returned both a non-zero result and a non-nil error. The result will always be ignored if the error is non-nil and the non-nil error causes requeuing with exponential backoff. For more details, see: https://pkg.go.dev/sigs.k8s.io/controller-runtime/pkg/reconcile#Reconciler    {"controller": "k8sgpt", "controllerGroup": "core.k8sgpt.ai", "controllerKind": "K8sGPT", "K8sGPT": {"name":"k8sgpt-bedrock","namespace":"k8sgpt-operator-system"}, "namespace": "k8sgpt-operator-system", "name": "k8sgpt-bedrock", "reconcileID": "b798fcd3-8940-4c19-be04-fd504c14d31d"}
+2026-03-21T23:42:28Z    ERROR   Reconciler error        {"controller": "k8sgpt", "controllerGroup": "core.k8sgpt.ai", "controllerKind": "K8sGPT", "K8sGPT": {"name":"k8sgpt-bedrock","namespace":"k8sgpt-operator-system"}, "namespace": "k8sgpt-operator-system", "name": "k8sgpt-bedrock", "reconcileID": "b798fcd3-8940-4c19-be04-fd504c14d31d", "error": "failed to call Analyze RPC: rpc error: code = Unknown desc = failed while calling AI provider amazonbedrock: model 'arn:aws:bedrock:us-east-1:660235343049:inference-profile/us.amazon.nova-lite-v1:0' is not supported.\nSupported models:\n  - anthropic.claude-sonnet-4-20250514-v1:0\n  - us.anthropic.claude-sonnet-4-20250514-v1:0\n  - eu.anthropic.claude-sonnet-4-20250514-v1:0\n  - apac.anthropic.claude-sonnet-4-20250514-v1:0\n  - us.anthropic.claude-3-7-sonnet-20250219-v1:0\n  - eu.anthropic.claude-3-7-sonnet-20250219-v1:0\n  - apac.anthropic.claude-3-7-sonnet-20250219-v1:0\n  - anthropic.claude-3-5-sonnet-20240620-v1:0\n  - us.anthropic.claude-3-5-sonnet-20241022-v2:0\n  - anthropic.claude-v2\n  - anthropic.claude-v1\n  - anthropic.claude-instant-v1\n  - ai21.j2-ultra-v1\n  - ai21.j2-jumbo-instruct\n  - amazon.titan-text-express-v1\n  - amazon.nova-pro-v1:0\n  - eu.amazon.nova-pro-v1:0\n  - us.amazon.nova-pro-v1:0\n  - amazon.nova-lite-v1:0\n  - eu.amazon.nova-lite-v1:0\n  - us.amazon.nova-lite-v1:0\n  - anthropic.claude-3-haiku-20240307-v1:0\n"}
+sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).reconcileHandler
+        /go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:353
+sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).processNextWorkItem
+        /go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:300
+sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).Start.func2.1
+        /go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:202
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       starting InitStep
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       ending InitStep
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       starting FinalizerStep
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       ending FinalizerStep
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       starting ConfigureStep
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       ending ConfigureStep
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       starting PreAnalysisStep
+2026-03-21T23:42:30Z    INFO    GenerateAddress Creating new client     {"address": "172.20.136.103:8080"}
+2026-03-21T23:42:30Z    INFO    GenerateAddress Connection established between address and localhost    {"address": "172.20.136.103:8080", "timeoutSeconds": 1}
+2026-03-21T23:42:30Z    INFO    GenerateAddress Remote Address  {"remoteAddr": "172.20.136.103:8080"}
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       K8sGPT address: 172.20.136.103:8080
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       K8sGPT client: &{0xc0006e0408}
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       Sending signal to configure step
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       Signal sent to configure step
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       Adding remote cache
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       Remote cache added
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       Adding integrations
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       Integrations added
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       ending PreAnalysisStep
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       starting AnalysisStep
+2026-03-21T23:42:30Z    INFO    k8sgpt-controller       Finished Reconciling k8sGPT with error: %s
+        {"error": "failed to call Analyze RPC: rpc error: code = Unknown desc = failed while calling AI provider amazonbedrock: model 'arn:aws:bedrock:us-east-1:660235343049:inference-profile/us.amazon.nova-lite-v1:0' is not supported.\nSupported models:\n  - anthropic.claude-sonnet-4-20250514-v1:0\n  - us.anthropic.claude-sonnet-4-20250514-v1:0\n  - eu.anthropic.claude-sonnet-4-20250514-v1:0\n  - apac.anthropic.claude-sonnet-4-20250514-v1:0\n  - us.anthropic.claude-3-7-sonnet-20250219-v1:0\n  - eu.anthropic.claude-3-7-sonnet-20250219-v1:0\n  - apac.anthropic.claude-3-7-sonnet-20250219-v1:0\n  - anthropic.claude-3-5-sonnet-20240620-v1:0\n  - us.anthropic.claude-3-5-sonnet-20241022-v2:0\n  - anthropic.claude-v2\n  - anthropic.claude-v1\n  - anthropic.claude-instant-v1\n  - ai21.j2-ultra-v1\n  - ai21.j2-jumbo-instruct\n  - amazon.titan-text-express-v1\n  - amazon.nova-pro-v1:0\n  - eu.amazon.nova-pro-v1:0\n  - us.amazon.nova-pro-v1:0\n  - amazon.nova-lite-v1:0\n  - eu.amazon.nova-lite-v1:0\n  - us.amazon.nova-lite-v1:0\n  - anthropic.claude-3-haiku-20240307-v1:0\n"}
+2026-03-21T23:42:30Z    INFO    Warning: Reconciler returned both a non-zero result and a non-nil error. The result will always be ignored if the error is non-nil and the non-nil error causes requeuing with exponential backoff. For more details, see: https://pkg.go.dev/sigs.k8s.io/controller-runtime/pkg/reconcile#Reconciler    {"controller": "k8sgpt", "controllerGroup": "core.k8sgpt.ai", "controllerKind": "K8sGPT", "K8sGPT": {"name":"k8sgpt-bedrock","namespace":"k8sgpt-operator-system"}, "namespace": "k8sgpt-operator-system", "name": "k8sgpt-bedrock", "reconcileID": "fdfdea21-63f0-493e-928c-dff2602f196b"}
+2026-03-21T23:42:30Z    ERROR   Reconciler error        {"controller": "k8sgpt", "controllerGroup": "core.k8sgpt.ai", "controllerKind": "K8sGPT", "K8sGPT": {"name":"k8sgpt-bedrock","namespace":"k8sgpt-operator-system"}, "namespace": "k8sgpt-operator-system", "name": "k8sgpt-bedrock", "reconcileID": "fdfdea21-63f0-493e-928c-dff2602f196b", "error": "failed to call Analyze RPC: rpc error: code = Unknown desc = failed while calling AI provider amazonbedrock: model 'arn:aws:bedrock:us-east-1:660235343049:inference-profile/us.amazon.nova-lite-v1:0' is not supported.\nSupported models:\n  - anthropic.claude-sonnet-4-20250514-v1:0\n  - us.anthropic.claude-sonnet-4-20250514-v1:0\n  - eu.anthropic.claude-sonnet-4-20250514-v1:0\n  - apac.anthropic.claude-sonnet-4-20250514-v1:0\n  - us.anthropic.claude-3-7-sonnet-20250219-v1:0\n  - eu.anthropic.claude-3-7-sonnet-20250219-v1:0\n  - apac.anthropic.claude-3-7-sonnet-20250219-v1:0\n  - anthropic.claude-3-5-sonnet-20240620-v1:0\n  - us.anthropic.claude-3-5-sonnet-20241022-v2:0\n  - anthropic.claude-v2\n  - anthropic.claude-v1\n  - anthropic.claude-instant-v1\n  - ai21.j2-ultra-v1\n  - ai21.j2-jumbo-instruct\n  - amazon.titan-text-express-v1\n  - amazon.nova-pro-v1:0\n  - eu.amazon.nova-pro-v1:0\n  - us.amazon.nova-pro-v1:0\n  - amazon.nova-lite-v1:0\n  - eu.amazon.nova-lite-v1:0\n  - us.amazon.nova-lite-v1:0\n  - anthropic.claude-3-haiku-20240307-v1:0\n"}
+sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).reconcileHandler
+        /go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:353
+sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).processNextWorkItem
+        /go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:300
+sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).Start.func2.1
+        /go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:202
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       starting InitStep
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       ending InitStep
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       starting FinalizerStep
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       ending FinalizerStep
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       starting ConfigureStep
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       ending ConfigureStep
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       starting PreAnalysisStep
+2026-03-21T23:47:58Z    INFO    GenerateAddress Creating new client     {"address": "172.20.136.103:8080"}
+2026-03-21T23:47:58Z    INFO    GenerateAddress Connection established between address and localhost    {"address": "172.20.136.103:8080", "timeoutSeconds": 1}
+2026-03-21T23:47:58Z    INFO    GenerateAddress Remote Address  {"remoteAddr": "172.20.136.103:8080"}
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       K8sGPT address: 172.20.136.103:8080
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       K8sGPT client: &{0xc0006e0c08}
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       Sending signal to configure step
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       Signal sent to configure step
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       Adding remote cache
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       Remote cache added
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       Adding integrations
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       Integrations added
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       ending PreAnalysisStep
+2026-03-21T23:47:58Z    INFO    k8sgpt-controller       starting AnalysisStep
+2026-03-21T23:47:59Z    INFO    k8sgpt-controller.analysis      AnalysisStep response   {"count": 2}
+2026-03-21T23:47:59Z    ERROR   Observed a panic        {"controller": "k8sgpt", "controllerGroup": "core.k8sgpt.ai", "controllerKind": "K8sGPT", "K8sGPT": {"name":"k8sgpt-bedrock","namespace":"k8sgpt-operator-system"}, "namespace": "k8sgpt-operator-system", "name": "k8sgpt-bedrock", "reconcileID": "738a64e6-ebfd-406c-9c98-011d8121ff3e", "panic": "runtime error: invalid memory address or nil pointer dereference", "panicGoValue": "\"invalid memory address or nil pointer dereference\"", "stacktrace": "goroutine 150 [running]:\nk8s.io/apimachinery/pkg/util/runtime.logPanic({0x222fca8, 0xc0008fc180}, {0x1c3ec00, 0x3281a30})\n\t/go/pkg/mod/k8s.io/apimachinery@v0.33.3/pkg/util/runtime/runtime.go:132 +0xbc\nsigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).Reconcile.func1()\n\t/go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:108 +0x112\npanic({0x1c3ec00?, 0x3281a30?})\n\t/usr/local/go/src/runtime/panic.go:792 +0x132\ngithub.com/k8sgpt-ai/k8sgpt-operator/pkg/resources.MapResults({{_, _}, {_, _}, {_, _}, {{_, _}, _}}, {0xc0000009a0, ...}, ...)\n\t/workspace/pkg/resources/results.go:70 +0xe2\ngithub.com/k8sgpt-ai/k8sgpt-operator/internal/controller/k8sgpt.(*AnalysisStep).execute(0xc0008fc1e0, 0xc000262000)\n\t/workspace/internal/controller/k8sgpt/analysis_step.go:67 +0x365\ngithub.com/k8sgpt-ai/k8sgpt-operator/internal/controller/k8sgpt.(*PreAnalysisStep).execute(0xc000ba0078, 0xc000262000)\n\t/workspace/internal/controller/k8sgpt/preAnalysis_step.go:91 +0x512\ngithub.com/k8sgpt-ai/k8sgpt-operator/internal/controller/k8sgpt.(*ConfigureStep).execute(0xc00062e210, 0xc000262000)\n\t/workspace/internal/controller/k8sgpt/configure_step.go:57 +0x115\ngithub.com/k8sgpt-ai/k8sgpt-operator/internal/controller/k8sgpt.(*FinalizerStep).execute(0xc00062e200, 0xc000262000)\n\t/workspace/internal/controller/k8sgpt/finalizer_step.go:64 +0x3f3\ngithub.com/k8sgpt-ai/k8sgpt-operator/internal/controller/k8sgpt.(*InitStep).execute(0xc0009f1b48, 0xc000262000)\n\t/workspace/internal/controller/k8sgpt/init_step.go:40 +0x13a\ngithub.com/k8sgpt-ai/k8sgpt-operator/internal/controller/k8sgpt.(*K8sGPTReconciler).Reconcile(0xc000136d80, {0x222fca8, 0xc0008fc180}, {{{0xc000692f90?, 0x1f0dc2f?}, {0xc00075a180?, 0x100?}}})\n\t/workspace/internal/controller/k8sgpt/k8sgpt_controller.go:122 +0x545\nsigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).Reconcile(0xc0008fc0f0?, {0x222fca8?, 0xc0008fc180?}, {{{0xc000692f90?, 0x0?}, {0xc00075a180?, 0x0?}}})\n\t/go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:119 +0xbf\nsigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).reconcileHandler(0x224cb20, {0x222fce0, 0xc0002530e0}, {{{0xc000692f90, 0x16}, {0xc00075a180, 0xe}}}, 0x0)\n\t/go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:340 +0x3ad\nsigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).processNextWorkItem(0x224cb20, {0x222fce0, 0xc0002530e0})\n\t/go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:300 +0x21b\nsigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).Start.func2.1()\n\t/go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:202 +0x85\ncreated by sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).Start.func2 in goroutine 117\n\t/go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:198 +0x28f\n"}
+k8s.io/apimachinery/pkg/util/runtime.logPanic
+        /go/pkg/mod/k8s.io/apimachinery@v0.33.3/pkg/util/runtime/runtime.go:142
+sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).Reconcile.func1
+        /go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:108
+runtime.gopanic
+        /usr/local/go/src/runtime/panic.go:792
+runtime.panicmem
+        /usr/local/go/src/runtime/panic.go:262
+runtime.sigpanic
+        /usr/local/go/src/runtime/signal_unix.go:925
+github.com/k8sgpt-ai/k8sgpt-operator/pkg/resources.MapResults
+        /workspace/pkg/resources/results.go:70
+github.com/k8sgpt-ai/k8sgpt-operator/internal/controller/k8sgpt.(*AnalysisStep).execute
+        /workspace/internal/controller/k8sgpt/analysis_step.go:67
+github.com/k8sgpt-ai/k8sgpt-operator/internal/controller/k8sgpt.(*PreAnalysisStep).execute
+        /workspace/internal/controller/k8sgpt/preAnalysis_step.go:91
+github.com/k8sgpt-ai/k8sgpt-operator/internal/controller/k8sgpt.(*ConfigureStep).execute
+        /workspace/internal/controller/k8sgpt/configure_step.go:57
+github.com/k8sgpt-ai/k8sgpt-operator/internal/controller/k8sgpt.(*FinalizerStep).execute
+        /workspace/internal/controller/k8sgpt/finalizer_step.go:64
+github.com/k8sgpt-ai/k8sgpt-operator/internal/controller/k8sgpt.(*InitStep).execute
+        /workspace/internal/controller/k8sgpt/init_step.go:40
+github.com/k8sgpt-ai/k8sgpt-operator/internal/controller/k8sgpt.(*K8sGPTReconciler).Reconcile
+        /workspace/internal/controller/k8sgpt/k8sgpt_controller.go:122
+sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).Reconcile
+        /go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:119
+sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).reconcileHandler
+        /go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:340
+sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).processNextWorkItem
+        /go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:300
+sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).Start.func2.1
+        /go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:202
+2026-03-21T23:47:59Z    ERROR   Reconciler error        {"controller": "k8sgpt", "controllerGroup": "core.k8sgpt.ai", "controllerKind": "K8sGPT", "K8sGPT": {"name":"k8sgpt-bedrock","namespace":"k8sgpt-operator-system"}, "namespace": "k8sgpt-operator-system", "name": "k8sgpt-bedrock", "reconcileID": "738a64e6-ebfd-406c-9c98-011d8121ff3e", "error": "panic: runtime error: invalid memory address or nil pointer dereference [recovered]"}
+sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).reconcileHandler
+        /go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:353
+sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).processNextWorkItem
+        /go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:300
+sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller[...]).Start.func2.1
+        /go/pkg/mod/sigs.k8s.io/controller-runtime@v0.21.0/pkg/internal/controller/controller.go:202

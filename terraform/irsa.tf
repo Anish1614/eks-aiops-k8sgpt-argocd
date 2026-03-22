@@ -24,8 +24,8 @@ resource "aws_iam_role_policy" "k8sgpt_bedrock" {
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
-      Effect   = "Allow"
-      Action   = [
+      Effect = "Allow"
+      Action = [
         "bedrock:InvokeModel",
         "bedrock:InvokeModelWithResponseStream",
         "bedrock:ListFoundationModels",
@@ -56,13 +56,16 @@ resource "aws_iam_role" "argocd_irsa" {
   })
 }
 
+resource "null_resource" "annotate_k8sgpt_sa" {
+  depends_on = [module.eks]
 
-resource "kubernetes_service_account_v1" "k8sgpt_bedrock" {
-  metadata {
-    name      = "k8sgpt-bedrock"
-    namespace = "k8sgpt-operator-system"
-    annotations = {
-      "eks.amazonaws.com/role-arn" = aws_iam_role.k8sgpt_bedrock.arn
-    }
+  provisioner "local-exec" {
+    command = <<EOT
+      aws eks update-kubeconfig --region ${var.region} --name ${var.cluster_name}
+      kubectl annotate sa k8sgpt-operator-controller-manager \
+        -n k8sgpt-operator-system \
+        eks.amazonaws.com/role-arn=${aws_iam_role.k8sgpt_bedrock.arn} \
+        --overwrite
+    EOT
   }
 }

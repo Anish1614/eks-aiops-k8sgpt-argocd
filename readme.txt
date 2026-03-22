@@ -146,3 +146,32 @@ kubectl rollout status deployment k8sgpt-operator-controller-manager \
 --
 
 kubectl describe pod -l app=k8sgpt-bedrock -n k8sgpt-operator-system | grep -A5 "Events:"
+
+
+=====================================
+again back to  aws bedrock
+helm upgrade k8sgpt-operator k8sgpt/k8sgpt-operator \
+  --namespace k8sgpt-operator-system \
+  --reuse-values
+
+kubectl delete k8sgpt k8sgpt-bedrock -n k8sgpt-operator-system
+
+
+
+helm search repo k8sgpt/k8sgpt-operator
+NAME                    CHART VERSION   APP VERSION     DESCRIPTION
+k8sgpt/k8sgpt-operator  0.2.26          0.2.25          Automatic SRE Superpowers within your Kubernete...
+anish_1614@notebook:/mnt/c/Users/anish/Desktop/project/eks-aiops-k8sgpt-argocd/eks-aiops-k8sgpt-argocd/terraform$ # Upgrade operator to latest
+helm upgrade k8sgpt-operator k8sgpt/k8sgpt-operator \
+  --namespace k8sgpt-operator-system \
+  --reuse-values \
+  --version $(helm search repo k8sgpt/k8sgpt-operator --output json | python3 -m json.tool | grep version | head -1)
+Error: "helm upgrade" requires 2 arguments
+
+Usage:  helm upgrade [RELEASE] [CHART] [flags]
+
+
+helm upgrade k8sgpt-operator k8sgpt/k8sgpt-operator \
+  --namespace k8sgpt-operator-system \
+  --reuse-values \
+  --version 0.2.26

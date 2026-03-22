@@ -1,0 +1,19 @@
+apiVersion: core.k8sgpt.ai/v1alpha1
+kind: K8sGPT
+metadata:
+  name: k8sgpt-gemini
+  namespace: k8sgpt-operator-system
+spec:
+  version: v0.4.27
+  ai:
+    enabled: true
+    model: gemini-1.5-flash-latest
+    backend: google
+    secret:
+      name: gemini-api-key
+      key: api-key
+    anonymized: false
+  noCache: false
+  filters:
+    - Pod
+

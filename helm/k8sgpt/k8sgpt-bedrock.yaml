@@ -4,15 +4,16 @@ metadata:
   name: k8sgpt-bedrock
   namespace: k8sgpt-operator-system
 spec:
-  version: v0.4.24
+  version: v0.3.46
+  repository: ghcr.io/k8sgpt-ai/k8sgpt
   ai:
     enabled: true
-    model: us.amazon.nova-lite-v1:0
+    model: amazon.nova-lite-v1:0
     backend: amazonbedrock
     region: us-east-1
-    anonymized: false
   noCache: false
   filters:
     - Pod
-  extraOptions:
-    serviceAccountIRSA: arn:aws:iam::660235343049:role/eks-aiops-cluster-k8sgpt-bedrock-role
+    - Deployment
+    - Service
+    - ReplicaSet
