@@ -48,10 +48,7 @@ output "oidc_provider_url" {
   value       = module.eks.cluster_oidc_issuer_url
 }
 
-output "k8sgpt_iam_role_arn" {
-  description = "IAM Role ARN for K8sGPT"
-  value       = aws_iam_role.k8sgpt_bedrock.arn
-}
+
 
 output "node_group_iam_role_arn" {
   description = "IAM Role ARN for EKS Node Group"
