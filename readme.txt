@@ -175,3 +175,6 @@ helm upgrade k8sgpt-operator k8sgpt/k8sgpt-operator \
   --namespace k8sgpt-operator-system \
   --reuse-values \
   --version 0.2.26
+
+  ==================================================
+ 
