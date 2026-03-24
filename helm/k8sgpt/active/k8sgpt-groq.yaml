@@ -1,4 +1,4 @@
-# k8sgpt-groq-with-metrics.yaml
+# k8sgpt-groq.yaml
 apiVersion: core.k8sgpt.ai/v1alpha1
 kind: K8sGPT
 metadata:
@@ -16,7 +16,3 @@ spec:
   noCache: false
   repository: ghcr.io/k8sgpt-ai/k8sgpt
   version: v0.3.48
-  # Enable Prometheus Metrics Export
-  extraOptions:
-    metrics: true
-    metricsPort: 8080
