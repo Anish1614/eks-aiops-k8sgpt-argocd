@@ -1,19 +1,17 @@
+# k8sgpt-gemini.yaml
 apiVersion: core.k8sgpt.ai/v1alpha1
 kind: K8sGPT
 metadata:
   name: k8sgpt-gemini
   namespace: k8sgpt-operator-system
 spec:
-  version: v0.4.27
   ai:
     enabled: true
-    model: gemini-1.5-flash-latest
     backend: google
+    model: gemini-1.5-flash  # or gemini-pro for higher quality
     secret:
       name: gemini-api-key
-      key: api-key
-    anonymized: false
+      key: gemini-api-key
   noCache: false
-  filters:
-    - Pod
-
+  repository: ghcr.io/k8sgpt-ai/k8sgpt
+  version: v0.3.48
