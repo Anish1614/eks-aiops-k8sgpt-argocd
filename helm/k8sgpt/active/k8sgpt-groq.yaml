@@ -1,0 +1,22 @@
+# k8sgpt-groq-with-metrics.yaml
+apiVersion: core.k8sgpt.ai/v1alpha1
+kind: K8sGPT
+metadata:
+  name: k8sgpt-groq
+  namespace: k8sgpt-operator-system
+spec:
+  ai:
+    enabled: true
+    backend: localai
+    model: llama-3.1-8b-instant
+    baseUrl: https://api.groq.com/openai/v1
+    secret:
+      name: groq-api-key
+      key: groq-api-key
+  noCache: false
+  repository: ghcr.io/k8sgpt-ai/k8sgpt
+  version: v0.3.48
+  # Enable Prometheus Metrics Export
+  extraOptions:
+    metrics: true
+    metricsPort: 8080
