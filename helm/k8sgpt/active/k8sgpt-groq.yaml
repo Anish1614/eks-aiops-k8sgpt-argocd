@@ -1,4 +1,28 @@
-# k8sgpt-groq.yaml
+# # k8sgpt-groq.yaml
+# apiVersion: core.k8sgpt.ai/v1alpha1
+# kind: K8sGPT
+# metadata:
+#   name: k8sgpt-groq
+#   namespace: k8sgpt-operator-system
+# spec:
+#   ai:
+#     enabled: true
+#     backend: localai
+#     model: llama-3.1-8b-instant
+#     baseUrl: https://api.groq.com/openai/v1
+#     secret:
+#       name: groq-api-key
+#       key: groq-api-key
+#     # Auto-remediation: automatically fix simple issues
+#     autoRemediation:
+#       enabled: true
+#       resources:
+#         - Pod
+#         - Deployment
+#   noCache: false
+#   repository: ghcr.io/k8sgpt-ai/k8sgpt
+#   version: v0.3.48
+
 apiVersion: core.k8sgpt.ai/v1alpha1
 kind: K8sGPT
 metadata:
@@ -7,18 +31,28 @@ metadata:
 spec:
   ai:
     enabled: true
+    model: llama-3.1-70b-versatile
     backend: localai
-    model: llama-3.1-8b-instant
-    baseUrl: https://api.groq.com/openai/v1
+    baseUrl: http://k8sgpt-groq:8080/v1
     secret:
-      name: groq-api-key
-      key: groq-api-key
-    # Auto-remediation: automatically fix simple issues
-    autoRemediation:
-      enabled: true
-      resources:
-        - Pod
-        - Deployment
-  noCache: false
-  repository: ghcr.io/k8sgpt-ai/k8sgpt
+      name: k8sgpt-groq-secret
+      key: api-key
+  remoteCache:
+    interplex:
+      endpoint: http://k8sgpt-interplex-service.k8sgpt-operator-system.svc.cluster.local:8084
+  repository: k8sgpt-ai/k8sgpt
   version: v0.3.48
+  autoRemediation:
+    enabled: true
+    riskThreshold: 10
+    resources:
+      - Pod
+      - Deployment
+    git:
+      enabled: true
+      repository: https://github.com/Anish1614/eks-aiops-k8sgpt-argocd
+      tokenSecretRef: git-token-secret
+      # Optional: specify branch (defaults to main/master)
+      branch: main
+      # Optional: commit message template
+      commitMessage: "fix(k8sgpt): auto-remediate {kind}/{name} - {error}"
