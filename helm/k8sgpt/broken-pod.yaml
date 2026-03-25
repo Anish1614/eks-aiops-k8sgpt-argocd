@@ -1,12 +1,24 @@
-# broken-pod.yaml
+# # broken-pod.yaml
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: crashloop-pod
+#   namespace: default
+# spec:
+#   containers:
+#   - name: crash
+#     image: busybox
+#     command: ["sh", "-c", "exit 1"]
+#   restartPolicy: Always
+
 apiVersion: v1
 kind: Pod
 metadata:
-  name: crashloop-pod
+  name: broken-nginx-pod
   namespace: default
 spec:
   containers:
-  - name: crash
-    image: busybox
-    command: ["sh", "-c", "exit 1"]
-  restartPolicy: Always
+  - name: nginx
+    image: nginx:latestt  # Typo in image name to trigger ImagePullBackOff
+    ports:
+    - containerPort: 80
