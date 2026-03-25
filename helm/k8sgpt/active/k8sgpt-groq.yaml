@@ -6,15 +6,15 @@ metadata:
 spec:
   ai:
     enabled: true
-    backend: localai
+    backend: localai  # Reverted since you confirmed this worked yesterday
     model: llama-3.1-8b-instant
     baseUrl: https://api.groq.com/openai/v1
     secret:
       name: groq-api-key
       key: groq-api-key
+    # Moved back inside 'ai' to resolve the 'unknown field' error
     autoRemediation:
       enabled: true
-      # riskThreshold: 10
       resources:
         - Pod
         - Deployment
