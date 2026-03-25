@@ -1,4 +1,3 @@
-# k8sgpt-groq.yaml
 apiVersion: core.k8sgpt.ai/v1alpha1
 kind: K8sGPT
 metadata:
@@ -13,7 +12,12 @@ spec:
     secret:
       name: groq-api-key
       key: groq-api-key
+    autoRemediation:
+      enabled: true
+      # riskThreshold: 10
+      resources:
+        - Pod
+        - Deployment
   noCache: false
   repository: ghcr.io/k8sgpt-ai/k8sgpt
   version: v0.3.48
-  # Remove autoRemediation section entirely - git config is now via env vars
