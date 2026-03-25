@@ -2,8 +2,8 @@
 set -e
 
 echo "=== Step 1: Terraform Apply ==="
-cd terraform
-terraform apply -auto-approve
+# cd /mnt/c/Users/anish/Desktop/project/eks-aiops-k8sgpt-argocd/eks-aiops-k8sgpt-argocd/terraform
+# terraform apply -auto-approve
 
 echo "=== Step 2: Update kubeconfig ==="
 aws eks update-kubeconfig --region us-east-1 --name eks-aiops-cluster
@@ -27,25 +27,7 @@ kubectl create secret generic groq-api-key \
   -n k8sgpt-operator-system 2>/dev/null || echo "Secret may already exist"
 
 echo "=== Step 7: Apply K8sGPT CR ==="
-kubectl apply -f - << 'EOF'
-apiVersion: core.k8sgpt.ai/v1alpha1
-kind: K8sGPT
-metadata:
-  name: k8sgpt-groq
-  namespace: k8sgpt-operator-system
-spec:
-  ai:
-    enabled: true
-    backend: localai
-    model: llama-3.1-8b-instant
-    baseUrl: https://api.groq.com/openai/v1
-    secret:
-      name: groq-api-key
-      key: groq-api-key
-  noCache: false
-  repository: ghcr.io/k8sgpt-ai/k8sgpt
-  version: v0.3.48
-EOF
+kubectl apply -f /mnt/c/Users/anish/Desktop/project/eks-aiops-k8sgpt-argocd/eks-aiops-k8sgpt-argocd/helm/k8sgpt/active/k8sgpt-groq.yaml
 
 echo "=== Step 8: Install ArgoCD ==="
 helm repo add argo https://argoproj.github.io/argo-helm 2>/dev/null || true
@@ -56,6 +38,13 @@ echo "=== Step 9: Install Prometheus + Grafana ==="
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts 2>/dev/null || true
 helm repo update
 helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack -n monitoring --create-namespace
+
+echo "=== Step 10: Enable K8sGPT Metrics & Dashboard ==="
+helm upgrade k8sgpt-operator k8sgpt/k8sgpt-operator \
+  -n k8sgpt-operator-system \
+  --set serviceMonitor.enabled=true \
+  --set serviceMonitor.additionalLabels.release=kube-prometheus-stack \
+  --set grafanaDashboard.enabled=true
 
 echo "=== Done! ==="
 echo "Check status with:"
