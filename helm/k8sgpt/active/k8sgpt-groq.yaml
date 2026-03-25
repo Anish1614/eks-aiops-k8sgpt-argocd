@@ -16,7 +16,7 @@ spec:
     # Auto-remediation: automatically fix simple issues
     autoRemediation:
       enabled: true
-      riskThreshold: 10
+      riskThreshold: 20
       resources:
         - Pod
         - Deployment
