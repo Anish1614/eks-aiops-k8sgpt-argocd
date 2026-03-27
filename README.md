@@ -268,6 +268,18 @@ To switch backends, copy the desired config to `helm/k8sgpt/active/`, commit, an
 
 ---
 
+## ⚠️ Auto-remediation vs GitOps
+
+K8sGPT auto-remediation applies fixes directly to the cluster (imperative).
+In a production GitOps setup, this creates drift between Git (source of truth)
+and the cluster state.
+
+**Recommended pattern:**
+- Use K8sGPT auto-remediation only for runtime issues (pod restarts, scaling)
+- For manifest fixes (wrong image, bad config) — K8sGPT diagnosis → human updates Git → ArgoCD syncs
+
+---
+
 ## 🧹 Cleanup
 
 ```bash
